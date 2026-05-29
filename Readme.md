@@ -2,6 +2,9 @@
 
 A production-grade autonomous research system built with LangGraph multi-agent orchestration, RAG (FAISS + Sentence Transformers), real-time web search, and persistent memory. Given a research query, the system plans, searches, verifies, writes, critiques, and evaluates a structured report — fully autonomously.
 
+**Live Demo:** https://researchforge-ai-wubxurps8gi58lxnzptbbd.streamlit.app
+**Backend API:** https://researchforge-ai.onrender.com/api/health
+
 ---
 
 ## What It Does
@@ -170,7 +173,7 @@ Every report follows this strict 6-section structure:
 **1. Clone the repo**
 ```bash
 git clone https://github.com/ShashankSingh1001/researchforge-ai.git
-cd research-analyst
+cd researchforge-ai
 ```
 
 **2. Create and activate a virtual environment**
