@@ -169,7 +169,7 @@ Every report follows this strict 6-section structure:
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/your-username/research-analyst.git
+git clone https://github.com/ShashankSingh1001/researchforge-ai.git
 cd research-analyst
 ```
 
