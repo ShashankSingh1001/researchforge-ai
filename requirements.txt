@@ -22,7 +22,7 @@ pymupdf==1.24.5
 
 # RAG + embeddings + vector DB
 sentence-transformers==3.0.1
-faiss-cpu==1.8.0
+faiss-cpu==1.9.0
 numpy==1.26.4
 
 # torch CPU-only — replaces full torch to stay within Render free tier memory limits
