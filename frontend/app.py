@@ -616,7 +616,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown('<div style="font-family:\'DM Mono\',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:0.5rem;">Navigation</div>', unsafe_allow_html=True)
-    page = st.radio("", ["Overview", "Research", "Sources", "Evaluation", "Follow-up Q&A"], label_visibility="collapsed")
+    page = st.radio("Navigation", ["Overview", "Research", "Sources", "Evaluation", "Follow-up Q&A"], label_visibility="collapsed")
 
     st.markdown("---")
     st.markdown('<div style="font-family:\'DM Mono\',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#64748b;margin-bottom:0.75rem;">System Status</div>', unsafe_allow_html=True)
@@ -898,8 +898,19 @@ elif page == "Research":
             _update_step(i, "done")
             elapsed += duration
 
-        # wait for thread to actually finish
-        thread.join(timeout=280)
+        # actively poll while updating UI every second to keep Streamlit connection alive
+        wait_elapsed = 0
+        wait_limit = 280
+        pulse = [85, 87, 89, 87, 85, 83, 85]
+        pulse_i = 0
+        while thread.is_alive() and wait_elapsed < wait_limit:
+            time.sleep(1)
+            wait_elapsed += 1
+            progress_bar.progress(
+                pulse[pulse_i % len(pulse)],
+                text=f"Pipeline running... ({wait_elapsed}s)",
+            )
+            pulse_i += 1
         progress_bar.progress(100, text="Pipeline complete.")
 
         if result_container["error"]:
